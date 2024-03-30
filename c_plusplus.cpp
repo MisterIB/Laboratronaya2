@@ -22,7 +22,6 @@ void NumberThree() {
 			SumNumDivThree(Number, Sum);
 		}
 	std::cout << Sum;
-
 }
 
 void NumberTwo() {
@@ -43,7 +42,7 @@ void NumberTwo() {
 	for (int Kernel: Kernels){
 		if (ColorsRings[Kernel].find('R') != std::string::npos and ColorsRings[Kernel].find('W') != std::string::npos and ColorsRings[Kernel].find('B') != std::string::npos) count += 1;
 	}
-	std::cout << " " << count;
+	std::cout << count;
 }
 
 void NumberOne() {
@@ -57,22 +56,22 @@ void NumberOne() {
 	std::cout << "Введите количество валунов" << std::endl;
 	int AmountOfStones = 0;
 	std::cin >> AmountOfStones;
-	std::vector<int> stones;
+	std::vector<int> Stones;
 	for (int i = 1;i <= AmountOfStones;i++) {
-		stones.push_back(i);
+		Stones.push_back(i);
 	}
 	std::set<int> Result;
 	int IsLndngOnAllStone = 0;
-	for (int stone: stones) {
+	for (int Stone: Stones) {
 		int IsLndngOnStone = 0;
 		for (int Bird : Birds) {
 			if (Bird == 1) IsLndngOnAllStone = 1;
-			if (stone % Bird == 0) IsLndngOnStone = 1;
+			if (Stone % Bird == 0) IsLndngOnStone = 1;
 		}
-		if (IsLndngOnStone == 0) Result.insert(stone);
+		if (IsLndngOnStone == 0) Result.insert(Stone);
 	}
-	for (int stone : Result) {
-		std::cout << stone << " ";
+	for (int Stone : Result) {
+		std::cout << Stone << " ";
 	}
 	if (IsLndngOnAllStone == 1) std::cout << "Птицы сядут на каждый камень";
 }
