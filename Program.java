@@ -1,10 +1,10 @@
 package Прога.лаба2.Laboratronaya2;
 
-import java.util.Scanner;
+import java.util.*;
 public class Program{
     public static void main(String[] args){
-        Scanner in = new Scanner(System.in);
-        NumberThree();
+        //NumberThree();
+		NumberTwo();
     }
     static void NumberThree() {
         Scanner in = new Scanner(System.in);
@@ -26,4 +26,25 @@ public class Program{
 	    }
 	    return Sum;
     }
+	static void NumberTwo() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Введите строку");
+		String TextLine = in.next();
+		Map<Integer, String> ColorsRings = new HashMap<Integer, String>();
+		Set<Integer> Kernels = new HashSet<Integer>();
+		for (int i = 1; i < TextLine.length(); i = i + 2) {
+			ColorsRings.put(TextLine.charAt(i) - '0', "");
+			Kernels.add(TextLine.charAt(i)-'0');
+	
+		}
+		for (int i = 1; i < TextLine.length(); i = i + 2) {
+			ColorsRings.put(TextLine.charAt(i) - '0', ColorsRings.get(TextLine.charAt(i) - '0') + TextLine.charAt(i-1));
+		}
+		int count = 0;
+		for (int Kernel: Kernels){
+			if (ColorsRings.get(Kernel).contains("R") & ColorsRings.get(Kernel).contains("W") & ColorsRings.get(Kernel).contains("B")) count += 1;
+		}
+		System.out.printf("%d", count);
+	}
+	
 }
