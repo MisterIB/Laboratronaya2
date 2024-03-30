@@ -3,29 +3,30 @@
 #include <set>
 #include <map>
 
+void SumNumDivThree(int Number, int& Sum) {
+	for (; Number > 0; Number = Number / 10) {
+		int Figure = Number % 10;
+		if (Figure % 3 == 0) Sum = Sum + Figure;
+	}
+}
+
 void NumberThree() {
 	std::cout << "Введите количество чисел" << std::endl;
-	int n = 0;
-	std::cin >> n;
+	int AmountOfNumbers = 0;
+	std::cin >> AmountOfNumbers;
 	std::cout << "Введите числа" << std::endl;
-	std::vector<int> Numbers;
-	for (int i = 0; i < n; i++) {
-		int n1 = 0;
-		std::cin >> n1;
-		Numbers.push_back(n1);
-	}
-	int Summ = 0;
-	for (int Number : Numbers) {
-		for (int Figure = 0;Number > 0;Number = Number / 10) {
-			Figure = Number % 10;
-			if (Figure % 3 == 0) Summ = Summ + Figure;
+	int Sum = 0;
+	for (int i = 0; i < AmountOfNumbers; i++) {
+			int Number = 0;
+			std::cin >> Number;
+			SumNumDivThree(Number, Sum);
 		}
-	}
-	std::cout << Summ;
+	std::cout << Sum;
+
 }
 
 void NumberTwo() {
-	std::cout << "Введите2" << std::endl;
+	std::cout << "Введите строку" << std::endl;
 	std::string TextLine;
 	std::cin >> TextLine;
 	std::map<int, std::string> ColorsRings;
@@ -37,9 +38,6 @@ void NumberTwo() {
 	}
 	for (int i = 1; TextLine[i-1] != '\0'; i = i + 2) {
 		ColorsRings[TextLine[i] - '0'] = ColorsRings[TextLine[i] - '0'] + TextLine[i-1];
-	}
-	for (int i = 0; i < 3;i++) {
-		std::cout << ColorsRings[i] << " ";
 	}
 	int count = 0;
 	for (int Kernel: Kernels){
@@ -57,24 +55,26 @@ void NumberOne() {
 		Birds.push_back(FlightRange);
 	}
 	std::cout << "Введите количество валунов" << std::endl;
-	int stones = 0;
-	std::cin >> stones;
-	std::vector<int> result;
-	for (int i = 1;i <= stones;i++) {
-		result.push_back(i);
+	int AmountOfStones = 0;
+	std::cin >> AmountOfStones;
+	std::vector<int> stones;
+	for (int i = 1;i <= AmountOfStones;i++) {
+		stones.push_back(i);
 	}
-	std::set<int> res;
-	int flag = 0;
-	for (int stone: result) {
-		flag = 0;
+	std::set<int> Result;
+	int IsLndngOnAllStone = 0;
+	for (int stone: stones) {
+		int IsLndngOnStone = 0;
 		for (int Bird : Birds) {
-			if (stone % Bird == 0) flag = 1;
+			if (Bird == 1) IsLndngOnAllStone = 1;
+			if (stone % Bird == 0) IsLndngOnStone = 1;
 		}
-		if (flag == 0) res.insert(stone);
+		if (IsLndngOnStone == 0) Result.insert(stone);
 	}
-	for (int stone : res) {
+	for (int stone : Result) {
 		std::cout << stone << " ";
 	}
+	if (IsLndngOnAllStone == 1) std::cout << "Птицы сядут на каждый камень";
 }
 
 int main() {
