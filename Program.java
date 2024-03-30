@@ -4,7 +4,8 @@ import java.util.*;
 public class Program{
     public static void main(String[] args){
         //NumberThree();
-		NumberTwo();
+		//NumberTwo();
+		NumberOne();
     }
     static void NumberThree() {
         Scanner in = new Scanner(System.in);
@@ -46,5 +47,35 @@ public class Program{
 		}
 		System.out.printf("%d", count);
 	}
-	
+	static void NumberOne() {
+		Scanner in = new Scanner(System.in);
+		Vector<Integer> Birds = new Vector<Integer>();
+		System.out.println("Введите дальность полета каждой птицы, чтобы перейти к следющему шагу введите 0");
+		while (true){
+			int FlightRange = in.nextInt();
+			if (FlightRange == 0) break;
+			Birds.add(FlightRange);
+			FlightRange = 0;
+		}
+		System.out.println("Введите количество валунов");
+		int AmountOfStones = in.nextInt();
+		Vector<Integer> Stones = new Vector<Integer>();
+		for (int i = 1;i <= AmountOfStones;i++) {
+			Stones.add(i);
+		}
+		Set<Integer> Result = new HashSet<Integer>();
+		int IsLndngOnAllStone = 0;
+		for (int Stone: Stones) {
+			int IsLndngOnStone = 0;
+			for (int Bird : Birds) {
+				if (Bird == 1) IsLndngOnAllStone = 1;
+				if (Stone % Bird == 0) IsLndngOnStone = 1;
+			}
+			if (IsLndngOnStone == 0) Result.add(Stone);
+		}
+		for (int Stone : Result) {
+			System.out.printf("%d ", Stone);
+		}
+		if (IsLndngOnAllStone == 1) System.out.println("Птицы сядут на каждый камень");
+	}
 }
